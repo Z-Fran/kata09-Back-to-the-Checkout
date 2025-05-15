@@ -20,6 +20,5 @@ Assumptions:
 Rules:
 + Regular: A's price is $1.1 -- {"A": 1}
 + Discount: 20% off {"A": 1*0.8}
-+ Buy N get discount: Buy 3 get 20% off
 + N for M dollars: Three for $1 -- {"AAA": 1}
 + Bundle pricing for multiple products: Two A and One B for $5 -- {"AAB": 5}
