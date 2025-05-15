@@ -4,9 +4,6 @@ from src.rule import Rule
 class Checkout:
     """A checkout system that calculates total price based on pricing rules.
     
-    This class manages a collection of items scanned at checkout and calculates
-    their total price according to the provided pricing rules.
-    
     Attributes:
         rules (List[Rule]): A list of pricing rules for different items.
         scanned_items (dict): A dictionary tracking scanned items and their quantities.

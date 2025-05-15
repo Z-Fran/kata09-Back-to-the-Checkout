@@ -3,8 +3,8 @@ from src.strategy import PricingStrategy
 class Rule:
     """A class representing a pricing rule that applies a specific pricing strategy.
     
-    This class encapsulates a pricing strategy and provides a method to calculate
-    the total price for a given quantity of items using that strategy.
+    Attributes:
+        strategy (PricingStrategy): The pricing strategy to be used for calculations.
     """
     
     def __init__(self,

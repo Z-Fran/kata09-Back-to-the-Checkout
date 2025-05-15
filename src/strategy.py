@@ -1,9 +1,10 @@
+from abc import ABC, abstractmethod
 from src.utils import (check_price,
                        check_quantity,
                        check_discount,
                        check_weight)
 
-class PricingStrategy():
+class PricingStrategy(ABC):
     """Base class for all pricing strategies.
     
     This abstract class defines the interface for all pricing strategies.
@@ -18,6 +19,7 @@ class PricingStrategy():
         check_price(price)
         self.price = round(price, 2)
 
+    @abstractmethod
     def calculate_price(self, item_quantity: int) -> float:
         """Calculate the total price for a given quantity of items.
         
@@ -31,9 +33,7 @@ class PricingStrategy():
 
 
 class RegularPricing(PricingStrategy):
-    """Regular pricing strategy that applies no special discounts.
-    
-    This strategy simply multiplies the base price by the quantity.
+    """Regular pricing strategy that applies no special rule.
     """
     def __init__(self, price: float):
         """Initialize regular pricing with base price.
@@ -58,8 +58,6 @@ class RegularPricing(PricingStrategy):
 
 class DiscountPricing(PricingStrategy):
     """Pricing strategy that applies a percentage discount to all items.
-    
-    This strategy applies the same discount percentage to every item purchased.
     """
     def __init__(self, price: float, discount: int):
         """Initialize discount pricing with base price and discount percentage.
@@ -88,9 +86,6 @@ class DiscountPricing(PricingStrategy):
 
 class NDiscountMPricing(PricingStrategy):
     """Pricing strategy that applies a discount when buying N or more items.
-    
-    This strategy applies a discount percentage only when the quantity purchased
-    meets or exceeds the specified threshold.
     """
     def __init__(self, price: float, buy_quantity: int, discount: int):
         """Initialize N-for-discount pricing with base price, quantity threshold and discount.
@@ -125,9 +120,6 @@ class NDiscountMPricing(PricingStrategy):
         
 class BuyNGetMFreePricing(PricingStrategy):
     """Pricing strategy that offers M free items when buying N items.
-    
-    This strategy implements a "Buy N, Get M Free" promotion where customers
-    get M items free for every N items purchased.
     """
     def __init__(self, price: float, buy_quantity: int, free_quantity: int):
         """Initialize Buy-N-Get-M-Free pricing with base price and quantities.
@@ -161,9 +153,6 @@ class BuyNGetMFreePricing(PricingStrategy):
 
 class NForMPricing(PricingStrategy):
     """Pricing strategy that offers N items for a special price M.
-    
-    This strategy implements a "N for M" promotion where customers can buy
-    N items for a special price M, with remaining items at regular price.
     """
     def __init__(self, price: float, buy_quantity: int, m_price: int):
         """Initialize N-for-M pricing with base price, quantity and special price.
@@ -197,9 +186,6 @@ class NForMPricing(PricingStrategy):
 
 class WeightPricing(PricingStrategy):
     """Pricing strategy that calculates price based on weight.
-    
-    This strategy is used for items sold by weight, where the price
-    is calculated based on the weight of the items.
     """
     def __init__(self, price: float, weight: float):
         """Initialize weight-based pricing with base price and weight.
