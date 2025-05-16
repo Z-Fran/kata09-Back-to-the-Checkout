@@ -1,10 +1,9 @@
-from abc import ABC, abstractmethod
 from src.utils import (check_price,
                        check_quantity,
                        check_discount,
                        check_weight)
 
-class PricingStrategy(ABC):
+class PricingStrategy():
     """Base class for all pricing strategies.
     
     This abstract class defines the interface for all pricing strategies.
@@ -19,7 +18,6 @@ class PricingStrategy(ABC):
         check_price(price)
         self.price = round(price, 2)
 
-    @abstractmethod
     def calculate_price(self, item_quantity: int) -> float:
         """Calculate the total price for a given quantity of items.
         
@@ -58,6 +56,7 @@ class RegularPricing(PricingStrategy):
 
 class DiscountPricing(PricingStrategy):
     """Pricing strategy that applies a percentage discount to all items.
+    Exampel: 10% discount for A
     """
     def __init__(self, price: float, discount: int):
         """Initialize discount pricing with base price and discount percentage.
